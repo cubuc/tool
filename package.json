@@ -1,6 +1,9 @@
 {
     "name": "app-webstorm",
     "version": "0.1.0",
+    "engines": {
+        "node": "14.17.3"
+    },
     "private": true,
     "scripts": {
         "start-server": "webpack-dev-server --open --history-api-fallback",
