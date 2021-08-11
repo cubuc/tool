@@ -7,13 +7,13 @@
     "private": true,
     "scripts": {
         "start-server": "webpack-dev-server --open --history-api-fallback",
-        "start": "npm-run-all -p start-server expressDev",
-        "build": "npm-run-all webpack express",
-        "webpack": "webpack --mode production",
+        "start": "npm-run-all -p start-server express",
+        "heroku": "npm run build && npm-run-all -p startDeployServer express",
+        "startDeployServer": "nodemon .\\src\\expressServer\\deploy.js",
+        "build": "webpack --mode production",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "expressDev": "nodemon .\\src\\expressServer\\server.ts",
-        "express": "npx tsc"
+        "express": "nodemon .\\src\\expressServer\\server.ts"
     },
     "eslintConfig": {
         "extends": "react-app"
