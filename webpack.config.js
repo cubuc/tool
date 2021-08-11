@@ -8,11 +8,11 @@ module.exports = {
         app: "./src/index.tsx",
     },
     output: {
-        path: path.resolve(__dirname, "dist/app"),
+        path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
     },
     devServer: {
-        contentBase: "./dist/app",
+        contentBase: "./dist",
         historyApiFallback: true,
     },
     module: {

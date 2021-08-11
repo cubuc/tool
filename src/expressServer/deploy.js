@@ -3,10 +3,10 @@ const express = require("express");
 const app = express(); // create express app
 
 // add middlewares
-app.use(express.static(path.join(__dirname, "..", "..", "/dist/app")));
+app.use(express.static(path.join(__dirname, "..", "..", "/dist")));
 
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "..", ".." , "dist", "app", "index.html"));
+    res.sendFile(path.join(__dirname, "..", ".." , "dist", "index.html"));
 });
 
 // start express server on port 5000
