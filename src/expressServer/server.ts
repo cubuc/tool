@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import path from "path";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
@@ -6,8 +7,11 @@ const port = process.env.PORT || 4001;
 //const index = require("./routes/index");
 
 const app = express();
-app.get("/", (req: Request, res: Response) => {
-    res.send("hello world");
+
+app.use(express.static(path.join(__dirname, "..", "..", "/dist")));
+
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "..", "..", "dist", "index.html"));
 });
 
 const httpServer = createServer(app);
@@ -32,4 +36,4 @@ io.on("connection", (socket: Socket) => {
     });
 });
 
-httpServer.listen(port, () => console.log(`Listening on port ${port}`));
+httpServer.listen(port, () => console.log(`HttpServer: Listening on port ${port}`));
