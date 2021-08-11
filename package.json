@@ -7,11 +7,13 @@
     "private": true,
     "scripts": {
         "start-server": "webpack-dev-server --open --history-api-fallback",
-        "start": "npm-run-all -p start-server express",
-        "build": "webpack",
+        "start": "npm-run-all -p start-server expressDev",
+        "build": "npm-run-all webpack express",
+        "webpack": "webpack",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "express": "nodemon .\\src\\expressServer\\server.ts"
+        "expressDev": "nodemon .\\src\\expressServer\\server.ts",
+        "express": "npx tsc"
     },
     "eslintConfig": {
         "extends": "react-app"

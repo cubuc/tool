@@ -17,9 +17,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": false,
-    "jsx": "react"
-  },
-  "include": [
-    "src"
-  ]
+        "jsx": "react",
+        "outDir": "dist\\express"
+    },
+    "include": ["src/expressServer/*.ts"]
 }
