@@ -23,7 +23,8 @@ const ClientSession = (): React.ReactElement => {
     useEffect(() => {
         socket.current = io();
         socket.current.on("FromAPI", (data: string) => {
-            setResponse(data);
+            if (data)
+                setResponse(data);
         });
 
         // CLEAN UP THE EFFECT

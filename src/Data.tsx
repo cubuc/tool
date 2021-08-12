@@ -36,7 +36,7 @@ export const Evaluation: Study = {
             estimatedTime: 20,
             checklist: ["Hinweis auf möglichkeit die studie zu erweitern"],
             isCondition: 1,
-            link: "http://localhost:8080"
+            link: "https://mighty-plains-57378.herokuapp.com",
         },
         {
             id: "sus1",
@@ -45,7 +45,7 @@ export const Evaluation: Study = {
             estimatedTime: 2,
             checklist: ["id checken"],
             isCondition: 0,
-             link: "https://forms.gle/XH2A1QC5Fp51M3Wv8"
+            link: "https://forms.gle/XH2A1QC5Fp51M3Wv8",
         },
         {
             id: "stuDurch",
@@ -55,7 +55,7 @@ export const Evaluation: Study = {
             estimatedTime: 20,
             checklist: ["studie sessions sind richtig eingestellt"], //TODO nur wenn es steuerbare sessions gibt.
             isCondition: 2,
-            link: "http://localhost:8080"
+            link: "https://mighty-plains-57378.herokuapp.com",
         },
         {
             id: "sus2",
@@ -63,8 +63,8 @@ export const Evaluation: Study = {
             description: "",
             estimatedTime: 2,
             checklist: ["id checken", "aufnahme für interview vorbereiten"],
-            isCondition: 0, 
-            link: "https://forms.gle/6RtpWsaDTN2jNhdU8"
+            isCondition: 0,
+            link: "https://forms.gle/6RtpWsaDTN2jNhdU8",
         },
         {
             id: "interview",
