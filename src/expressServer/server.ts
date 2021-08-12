@@ -4,7 +4,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 8080;
 //const index = require("./routes/index");
 
 const app = express();
@@ -33,9 +33,16 @@ io.on("connection", (socket: Socket) => {
         console.log("Client disconnected");
     });
 
-    socket.on("step", (obj) => {
-        io.emit("FromAPI", obj);
-        console.log("received " + obj);
+    socket.on("step", (obj, room) => {
+        io.to(room).emit("FromAPI", obj);
+        console.log("sent " + obj + " for room " + room);
+    });
+
+    socket.on("join", (room) => {
+        if (room) {
+            socket.join(room);
+            console.log("socket " + socket.id + " joined " + room);
+        }
     });
 });
 

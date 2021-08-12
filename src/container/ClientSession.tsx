@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Box, Button, makeStyles } from "@material-ui/core";
+import { Box, Button, makeStyles, TextField } from "@material-ui/core";
 import { Socket, io } from "socket.io-client";
 
 const useStyles = makeStyles(() => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     },
     frame: {
         height: "100%",
-    }
+    },
 }));
 
 const ClientSession = (): React.ReactElement => {
@@ -19,12 +19,13 @@ const ClientSession = (): React.ReactElement => {
 
     const [response, setResponse] = useState("");
     const socket = useRef<Socket>();
+    const [room, setRoom] = useState("");
+    const [joined, setJoined] = useState(false);
 
     useEffect(() => {
         socket.current = io();
         socket.current.on("FromAPI", (data: string) => {
-            if (data)
-                setResponse(data);
+            setResponse(data);
         });
 
         // CLEAN UP THE EFFECT
@@ -33,10 +34,22 @@ const ClientSession = (): React.ReactElement => {
         };
     }, []);
 
+    const handleButton = () => {
+        if (socket.current) {
+            socket.current?.emit("join", room);
+            setJoined(true);
+        }
+    };
+
     return (
         <Box className={classes.wrapper}>
-            <iframe src={response} title="Test" className={classes.frame}>
-            </iframe>
+            {!joined && (
+                <Box>
+                    <TextField onChange={(event) => setRoom(event.target.value)}></TextField>
+                    <Button onClick={handleButton}>Join</Button>
+                </Box>
+            )}
+            <iframe src={response} title="Test" className={classes.frame}></iframe>
         </Box>
     );
 };

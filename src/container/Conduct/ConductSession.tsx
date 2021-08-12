@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Box, makeStyles } from "@material-ui/core";
-import  { Socket, io} from "socket.io-client";
+import { Socket, io } from "socket.io-client";
 import { BasicProps } from "../../components";
 import { useSelector } from "react-redux";
 import { selectCurrentStudy } from "../../redux/editStudySlice";
@@ -24,7 +24,7 @@ const ConductSession = (props: ConductSessionProps): React.ReactElement => {
 
     useEffect(() => {
         socket.current = io();
-
+        socket.current.emit("join", currentStudy.id);
         // CLEAN UP THE EFFECT
         return () => {
             socket.current?.disconnect();
@@ -36,7 +36,7 @@ const ConductSession = (props: ConductSessionProps): React.ReactElement => {
             currentStudy.procedurePlan[
                 Math.max(0, Math.min(currentStudy.procedurePlan.length - 1, props.step || 0))
             ].link;
-        if (socket.current) socket.current.emit("step", link)
+        if (socket.current) socket.current.emit("step", link, currentStudy.id)
     }, [props.step])
 
     return <Box className={classes.wrapper}></Box>;
