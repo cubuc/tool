@@ -265,7 +265,7 @@ export const MockStudy: Study = {
             description: "showing another video OR pick another riddle",
             estimatedTime: 2,
             checklist: [
-                "note down elapsed time on completion",
+                "note down total elapsed time",
             ],
             isCondition: 2,
         },
