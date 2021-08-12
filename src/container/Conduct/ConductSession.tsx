@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Box, makeStyles } from "@material-ui/core";
-import socketIOClient, { Socket } from "socket.io-client";
+import  { Socket, io} from "socket.io-client";
 import { BasicProps } from "../../components";
 import { useSelector } from "react-redux";
 import { selectCurrentStudy } from "../../redux/editStudySlice";
-
-const ENDPOINT = "http://127.0.0.1:4001";
 
 interface ConductSessionProps extends BasicProps {
     step?: number;
@@ -25,7 +23,7 @@ const ConductSession = (props: ConductSessionProps): React.ReactElement => {
     const currentStudy = useSelector(selectCurrentStudy);
 
     useEffect(() => {
-        socket.current = socketIOClient(ENDPOINT);
+        socket.current = io();
 
         // CLEAN UP THE EFFECT
         return () => {

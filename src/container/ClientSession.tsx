@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Box, Button, makeStyles } from "@material-ui/core";
-import socketIOClient, { Socket } from "socket.io-client";
-
-const ENDPOINT = "http://127.0.0.1:4001";
+import { Socket, io } from "socket.io-client";
 
 const useStyles = makeStyles(() => ({
     wrapper: {
@@ -23,7 +21,7 @@ const ClientSession = (): React.ReactElement => {
     const socket = useRef<Socket>();
 
     useEffect(() => {
-        socket.current = socketIOClient(ENDPOINT);
+        socket.current = io();
         socket.current.on("FromAPI", (data: string) => {
             setResponse(data);
         });

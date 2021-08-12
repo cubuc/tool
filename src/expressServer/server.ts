@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import path from "path";
+import cors from "cors";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
@@ -7,6 +8,8 @@ const port = process.env.PORT || 4001;
 //const index = require("./routes/index");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, "..", "..", "/dist")));
 
